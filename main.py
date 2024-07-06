@@ -132,7 +132,7 @@ def login_for_access_token(data: schemas.UserLogin, db: Session = Depends(get_db
     
 @app.get("/api/users/{userId}")
 def get_user(userId: str, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.userId == userId).first()
+    user = db.query(models.User).filter(models.User.userId == userId, models.User.userId == current_user.userId ).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
     content = {
