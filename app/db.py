@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 
-SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PWD}@{settings.DB_HOST}/s2hng"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PWD}@{settings.DB_HOST}/defaultdb?sslmode=require"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
