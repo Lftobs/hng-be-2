@@ -208,7 +208,7 @@ def get_organisation(orgId: str, current_user: models.User = Depends(get_current
 
 @app.post("/api/organisations/{orgId}/users")
 def add_user_to_organisation(orgId: str, user: schemas.UserOrgs, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
-    db_org = db.query(models.Organisation).filter(models.Organisation.orgId == orgId, models.Organisation.creator_id == current_user.userId).first()
+    db_org = db.query(models.Organisation).filter(models.Organisation.orgId == orgId).first()
     if db_org is None:
         raise NotFoundError(
             detail="Organisation not found",
