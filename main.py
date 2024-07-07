@@ -67,7 +67,11 @@ def get_current_user(request: Request, db: Session = Depends(get_db)):
         )
     
     return user
-
+@app.get("/")
+def greeting():
+	return {
+		"msg" : "hello"
+	}
 
 @app.post("/auth/register")
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
